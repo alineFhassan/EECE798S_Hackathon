@@ -1,0 +1,83 @@
+{% extends "base_hr.html" %}
+
+{% block content %}
+<div class="main-content">
+  <header class="dashboard-header">
+    <div class="header-left">
+      <a href="{{ url_for('weekly_questions') }}" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <h1 class="dashboard-title">View Answer</h1>
+    </div>
+    <div class="header-actions">
+      <button class="btn-outline" id="printBtn">
+        <i class="fas fa-print"></i> Print
+      </button>
+    </div>
+  </header>
+
+  <main class="dashboard-main">
+    <!-- Questions and Answers -->
+    <div class="qa-container">
+      <h2 class="qa-title">Questions & Answers</h2>
+      
+      {% for qa in answer.questions_and_answers %}
+        <div class="qa-card">
+          <div class="qa-header">
+            <h3 class="qa-number">Question {{ loop.index }}</h3>
+          </div>
+          <div class="qa-content">
+            <div class="question-section">
+              <div class="section-label">Question:</div>
+              <div class="question-text">{{ qa.question }}</div>
+            </div>
+            <div class="answer-section">
+              <div class="section-label">Answer:</div>
+              <div class="answer-text">{{ qa.answer }}</div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <!-- Feedback Section -->
+    <div class="feedback-card">
+      <h2 class="feedback-title">Feedback & Recommendations</h2>
+      <div class="feedback-content">
+        <div class="strengths-section">
+          <h3><i class="fas fa-star"></i> Strengths</h3>
+          <ul>
+            {% if answer.evaluation >= 80 %}
+              <li>Excellent technical understanding demonstrated</li>
+              <li>Clear and concise explanation of concepts</li>
+              <li>Well-structured responses with good examples</li>
+            {% elif answer.evaluation >= 60 %}
+              <li>Good technical knowledge shown</li>
+              <li>Adequate explanation of key concepts</li>
+              <li>Organized responses</li>
+            {% else %}
+              <li>Some understanding of basic concepts</li>
+              <li>Attempt made to address all questions</li>
+            {% endif %}
+          </ul>
+        </div>
+        
+        <div class="improvements-section">
+          <h3><i class="fas fa-lightbulb"></i> Areas for Improvement</h3>
+          <ul>
+            {% if answer.evaluation < 80 %}
+              <li>Could provide more detailed technical explanations</li>
+              <li>Consider adding more specific examples</li>
+            {% endif %}
+            
+            {% if answer.evaluation < 60 %}
+              <li>Need to improve understanding of core concepts</li>
+              <li>Work on clarity and structure of responses</li>
+              <li>Research topics more thoroughly before answering</li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}
