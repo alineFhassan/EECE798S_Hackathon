@@ -33,7 +33,12 @@
             </a>
           </li>
 
-          
+            <li class="sidebar-menu-item {{ 'active' if request.endpoint == 'match_search' else '' }}">
+            <a href="{{ url_for('match_search') }}" class="sidebar-menu-link">
+              <i class="fas fa-tachometer-alt"></i>
+              <span>match_search</span>
+            </a>
+          </li>
     
         </ul>
       </div>

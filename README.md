@@ -187,8 +187,19 @@ Result: {
 
 ✅ Final Answer: Yes, John has Python skills.
 ```
+### Tasks Done
+1. CV Extraction – Extracted text from pdf resumes and formatted it as JSON using LLM.
+2. Job Description – Used an LLM to standardize and format job descriptions.
+3. Graph Schema – Generated nodes and edges from extracted CVs and Jobs with an LLM.
+4. Graph Construction – Built the graph using NetworkX. (See demo demo_798_graph.mp4)
+5. Frontend - Fully implemented usinh html + css (See demo UI.mp4)
+6. Docker - Implemented but needs improvements
 
+### Future Work
+1. update docker implementation for the e2e system to work
+2. Automate sending emails to top matching candidates
 
+Graph Querying – Queried the graph using LangChain.
 ### Team Members
 1. Aline Hassan
 2. Jenny Haddad

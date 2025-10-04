@@ -99,7 +99,23 @@ def login():
 def validate_email_format(email):
     """Basic email format validation"""
     return re.match(r"[^@]+@[^@]+\.[^@]+", email) is not None
-
+@app.route('/match_search', methods=['GET', 'POST'])
+def match_search():
+    if request.method == 'POST':
+        data = request.get_json() or {}
+        text = data.get('text', '')
+        
+        result = {
+            'original': text,
+            'length': len(text),
+            'words': len(text.split()),
+            'uppercase': text.upper(),
+            'lowercase': text.lower()
+        }
+        return render_template('match_search.html', result=result)
+    
+    # GET request just loads the page
+    return render_template('match_search.html')
 # ========================
 #  SIGNUP
 # ========================

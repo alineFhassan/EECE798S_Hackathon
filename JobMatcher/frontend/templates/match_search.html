@@ -1,0 +1,88 @@
+{% extends "base_company.html" %}
+
+{% block content %}
+<div class="main-content">
+  <header class="dashboard-header">
+    <h1 class="dashboard-title">Search For JOB</h1>
+  </header>
+
+  <main class="dashboard-main">
+    <div class="card">
+    
+      <div class="card-content">
+       
+              
+ 
+        <form method="POST" action="{{ url_for('match_search') }}">
+        
+          <div class="form-group">
+            <label for="jobDescription" class="form-label">Search for Matching*</label>
+            <textarea id="jobDescription" name="jobDescription" class="form-input" rows="5" required></textarea>
+          </div>
+
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">search</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+// Add dynamic fields for responsibilities and requirements
+document.addEventListener('DOMContentLoaded', function() {
+  // Responsibilities
+  document.getElementById('add-responsibility').addEventListener('click', function() {
+    const container = document.getElementById('responsibilities-container');
+    const div = document.createElement('div');
+    div.className = 'responsibility-input';
+    div.innerHTML = `
+      <input type="text" name="responsibilities" class="form-input" required>
+      <button type="button" class="btn btn-sm btn-outline remove-responsibility">Remove</button>
+    `;
+    container.appendChild(div);
+  });
+
+  // Requirements
+  document.getElementById('add-requirement').addEventListener('click', function() {
+    const container = document.getElementById('requirements-container');
+    const div = document.createElement('div');
+    div.className = 'requirement-input';
+    div.innerHTML = `
+      <input type="text" name="requirements" class="form-input" required>
+      <button type="button" class="btn btn-sm btn-outline remove-requirement">Remove</button>
+    `;
+    container.appendChild(div);
+  });
+
+  // Event delegation for remove buttons
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('remove-responsibility')) {
+      e.target.parentElement.remove();
+    }
+    if (e.target.classList.contains('remove-requirement')) {
+      e.target.parentElement.remove();
+    }
+  });
+});
+</script>
+
+<style>
+.responsibility-input, .requirement-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.responsibility-input input, .requirement-input input {
+  flex-grow: 1;
+}
+
+.remove-responsibility, .remove-requirement {
+  white-space: nowrap;
+}
+</style>
+{% endblock %}
