@@ -7,7 +7,7 @@ from openai import OpenAI
 import requests 
 app = Flask(__name__)
 import os
-from JobMatcher.graph_extraction_chain import extract_graph_from_text
+from graph_extraction_chain import extract_graph_from_text
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=OPENAI_API_KEY)
 
@@ -104,7 +104,7 @@ def extract_cv():
         return jsonify({
             "status": "success",
             "cv_data": formatted_cv,    
-            "graph": graph
+            "cv_graph": graph
         })
     
     

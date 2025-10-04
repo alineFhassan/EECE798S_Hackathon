@@ -55,7 +55,7 @@ def _get_agent_executor():
 
         # Create ReAct prompt template
         react_prompt = PromptTemplate.from_template("""
-You are a helpful assistant that can answer questions about a knowledge graph.
+You are a helpful assistant that can answer questions about a knowledge graph. You have to answwer questions like an HR expert.
 
 You have access to the following tools:
 {tools}

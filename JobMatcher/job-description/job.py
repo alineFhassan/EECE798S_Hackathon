@@ -7,6 +7,7 @@ import os
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
+from graph_extraction_chain import extract_graph_from_text
 
 app = Flask(__name__)
 
@@ -87,7 +88,7 @@ def generate_job_description():
         if json_str.endswith("```"):
             json_str = json_str[:-3]  # Remove trailing ```
         json_str = json_str.strip()
-
+        
         # Try to parse JSON with error handling
         try:
             job_description = json.loads(json_str)
@@ -99,9 +100,11 @@ def generate_job_description():
                 "raw_response": json_str
             }), 500
         
+        job_graph = extract_graph_from_text(job_description, kind="jd")
         return jsonify({
             "status": "success",
-            "job_description": job_description
+            "job_description": job_description,
+            "job_graph": job_graph
         })
 
 
