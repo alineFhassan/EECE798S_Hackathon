@@ -192,8 +192,9 @@ Result: {
 2. Job Description – Used an LLM to standardize and format job descriptions.
 3. Graph Schema – Generated nodes and edges from extracted CVs and Jobs with an LLM.
 4. Graph Construction – Built the graph using NetworkX. (See demo demo_798_graph.mp4)
-5. Frontend - Fully implemented usinh html + css (See demo UI.mp4)
-6. Docker - Implemented but needs improvements
+5. Graph Query  - Queried the graph with different quesntions on graph and got answers. (See Live demo example above)
+6. Frontend - Fully implemented using html + css (See demo UI.mp4)
+7. Docker - Implemented but needs improvements
 
 ### Future Work
 1. update docker implementation for the e2e system to work
